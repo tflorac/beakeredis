@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='beaker_redis',
+    name='beakeredis',
     version='0.0.1',
     description="Redis backend for Beaker",
     long_description="""
@@ -25,17 +25,18 @@ setup(
     keywords='Beaker',
     author='Alexander Pyatkin',
     author_email='asp@thexyz.net',
-    url='https://github.com/aspyatkin/beaker_redis',
+    url='https://github.com/aspyatkin/beakeredis',
     license='MIT',
     packages=find_packages('.'),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Beaker>=1.6.4,<1.7',
         'redis>=2.10'
     ],
     entry_points="""
     # -*- Entry points: -*-
     [beaker.backends]
-    redis = beaker_extensions.redis_:RedisManager
+    redis = beakeredis.redis_:RedisManager
     """
 )
