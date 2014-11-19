@@ -13,8 +13,8 @@ except ImportError:
 
 log = logging.getLogger(__name__)
 
-class RedisManager(NoSqlManager):
 
+class RedisManager(NoSqlManager):
     connection_pools = {}
 
     def __init__(self,
