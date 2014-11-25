@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='beakeredis',
-    version='0.0.1',
+    version='0.0.2',
     description="Redis backend for Beaker",
     long_description="""
     Extending beaker (cache & session module) to use Redis backend

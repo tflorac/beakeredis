@@ -1,10 +1,7 @@
 import json
 import logging
 from beaker.exceptions import InvalidCacheBackendError
-
-from beaker_extensions.nosql import Container
-from beaker_extensions.nosql import NoSqlManager
-from beaker_extensions.nosql import pickle
+from .nosql import Container, NoSqlManager, pickle
 
 try:
     from redis import StrictRedis, ConnectionPool
