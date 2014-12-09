@@ -1,6 +1,7 @@
 build
 *.py?
 *.egg-info
+*.egg
 *.swp
 build/
 dist/
