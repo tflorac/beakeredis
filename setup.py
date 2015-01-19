@@ -3,6 +3,7 @@ from setuptools import setup, find_packages, Command
 
 class PyTest(Command):
     user_options = []
+
     def initialize_options(self):
         pass
 
@@ -10,7 +11,8 @@ class PyTest(Command):
         pass
 
     def run(self):
-        import sys,subprocess
+        import sys
+        import subprocess
         errno = subprocess.call([sys.executable, 'runtests.py'])
         raise SystemExit(errno)
 
@@ -53,6 +55,6 @@ setup(
     entry_points="""
     # -*- Entry points: -*-
     [beaker.backends]
-    redis = beakeredis.redis_:RedisManager
+    redis = beakeredis:RedisManager
     """
 )
