@@ -1,3 +1,5 @@
+# beakeredis
+[![Build Status](https://travis-ci.org/aspyatkin/gang.svg?branch=master)](https://travis-ci.org/aspyatkin/gang)
 ## Installation
 `pip install beakeredis`
 ## Configuration
