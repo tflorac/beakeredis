@@ -8,6 +8,6 @@ install:
   - 'pip install Flask'
   - 'pip install pytz'
   - 'pip install python-dateutil'
-  - 'pip install Beaker>=1.6.4,<1.7'
+  - 'pip install Beaker>=1.6.4'
   - 'pip install redis>=2.10'
 script: py.test
