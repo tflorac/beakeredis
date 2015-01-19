@@ -59,7 +59,7 @@ class RedisManager(NamespaceManager):
         self.open_connection(host, int(port), **conn_params)
 
     def open_connection(self, host, port, **params):
-        pool_key = self._format_pool_key(host, port, self.db)
+        pool_key = self._format_pool_key(host, port)
         if pool_key not in self.connection_pools:
             self.connection_pools[pool_key] = ConnectionPool(host=host,
                                                              port=port,
@@ -118,16 +118,16 @@ class RedisManager(NamespaceManager):
         self.db_conn.delete(self._format_key(key))
 
     def _format_key(self, key):
-        return 'beaker:%s:%s' % (self.namespace, key.replace(' ', '\302\267'))
+        return 'beaker:{0}:{1}'.format(self.namespace, key.replace(' ', '\302\267'))
 
-    def _format_pool_key(self, host, port, db):
+    def _format_pool_key(self, host, port):
         return '{0}:{1}:{2}'.format(host, port, self.db)
 
     def do_remove(self):
-        self.db_conn.flush()
+        self.db_conn.flushdb()
 
     def keys(self):
-        return self.db_conn.keys('beaker:%s:*' % self.namespace)
+        return self.db_conn.keys('beaker:{0}:*'.format(self.namespace))
 
 
 class RedisContainer(Container):
