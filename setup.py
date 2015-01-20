@@ -1,8 +1,25 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Command
+
+
+class PyTest(Command):
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        import sys
+        import subprocess
+        errno = subprocess.call([sys.executable, 'runtests.py'])
+        raise SystemExit(errno)
+
 
 setup(
     name='beakeredis',
-    version='0.0.2',
+    version='0.0.3-dev',
     description="Redis backend for Beaker",
     long_description="""
     Extending beaker (cache & session module) to use Redis backend
@@ -34,9 +51,10 @@ setup(
         'Beaker>=1.6.4,<1.7',
         'redis>=2.10'
     ],
+    cmdclass=dict(test=PyTest),
     entry_points="""
     # -*- Entry points: -*-
     [beaker.backends]
-    redis = beakeredis.redis_:RedisManager
+    redis = beakeredis:RedisManager
     """
 )
