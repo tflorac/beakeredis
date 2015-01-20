@@ -19,7 +19,7 @@ class PyTest(Command):
 
 setup(
     name='beakeredis',
-    version='0.0.3-dev',
+    version='0.0.3',
     description="Redis backend for Beaker",
     long_description="""
     Extending beaker (cache & session module) to use Redis backend
