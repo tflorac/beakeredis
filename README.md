@@ -1,3 +1,5 @@
+# beakeredis
+[![Build Status](https://travis-ci.org/aspyatkin/beakeredis.svg?branch=dev)](https://travis-ci.org/aspyatkin/beakeredis)
 ## Installation
 `pip install beakeredis`
 ## Configuration
