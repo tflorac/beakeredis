@@ -36,6 +36,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Utilities'
     ],
@@ -48,7 +49,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Beaker>=1.6.4,<1.7',
+        'Beaker>=1.6.4',
         'redis>=2.10'
     ],
     cmdclass=dict(test=PyTest),
