@@ -57,7 +57,7 @@ class TestFlaskApp(unittest.TestCase):
     def create_session(self):
         r = self.client.put('/session')
         assert r.status_code == 200
-        regexp = r'^\s+session_id\=(?P<id>[a-f0-9]{32}); Domain\=example.com; httponly; Path\=/; secure$'
+        regexp = r'^\s+session_id\=(?P<id>[a-f0-9]{32}); Domain\=example.com; (h|H)ttp(o|O)nly; Path\=/; (s|S)ecure$'
         match = re.match(regexp, r.headers['set-cookie'])
         assert match is not None
         assert len(match.group('id')) == 32
@@ -67,7 +67,7 @@ class TestFlaskApp(unittest.TestCase):
         headers = {'Cookie': 'session_id={0}'.format(session_id)}
         r = self.client.delete('/session', headers=headers)
         assert r.status_code == 200
-        regexp = r'^\s+session_id\={0}; Domain\=example.com; expires\=(?P<expires>.+); httponly; Path\=/; secure'.format(session_id)
+        regexp = r'^\s+session_id\={0}; Domain\=example.com; expires\=(?P<expires>.+); (h|H)ttp(o|O)nly; Path\=/; (s|S)ecure'.format(session_id)
         match = re.match(regexp, r.headers['set-cookie'])
         assert match is not None
         now = datetime.now(tz=pytz.timezone('GMT'))
