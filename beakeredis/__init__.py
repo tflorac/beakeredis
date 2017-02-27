@@ -1,5 +1,6 @@
-import json
 import logging
+import json
+import sys
 
 from beaker.container import NamespaceManager, Container
 from beaker.synchronization import file_synchronizer
@@ -17,6 +18,14 @@ except ImportError:
     raise InvalidCacheBackendError("Redis cache backend requires the 'redis' library")
 
 log = logging.getLogger(__name__)
+
+
+if sys.version_info[0] == 2:
+    unicode_text = unicode
+    byte_string = str
+else:
+    unicode_text = str
+    byte_string = bytes
 
 
 class RedisManager(NamespaceManager):
@@ -118,7 +127,10 @@ class RedisManager(NamespaceManager):
         self.db_conn.delete(self._format_key(key))
 
     def _format_key(self, key):
-        return 'beaker:{0}:{1}'.format(self.namespace, key.replace(' ', '\302\267'))
+        if isinstance(key, unicode_text):
+            key = key.encode('ascii', 'backslashreplace')
+        return 'beaker:{0}:{1}'.format(self.namespace, key.replace(byte_string(' '),
+                                                                   byte_string('\302\267')))
 
     def _format_pool_key(self, host, port):
         return '{0}:{1}:{2}'.format(host, port, self.db)
